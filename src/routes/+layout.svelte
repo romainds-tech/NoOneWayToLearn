@@ -1,22 +1,18 @@
 <script lang="ts">
+    import "../app.pcss";
     import {page} from "$app/stores";
-    import Navbaritem from "$lib/components/navigation/Navbaritem.svelte";
+    import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
+    $: activeUrl = $page.url.pathname
 </script>
-<nav>
-    <ul>
-        <Navbaritem name="Home" isActive={$page.url.pathname === '/' || $page.url.pathname === '/home' || $page.url.pathname === '/#'} href="" />
-        <Navbaritem name="Second" isActive={$page.url.pathname === '/second'} href="/second" />
-        <Navbaritem name="Third" isActive={$page.url.pathname === '/third'} href="/third" />
-    </ul>
-</nav>
+<Navbar  >
+    <NavBrand href="/">
+        <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">NoOneWayToLearn</span>
+    </NavBrand>
+    <NavHamburger  />
+    <NavUl {activeUrl} >
+        <NavLi href="/">Home</NavLi>
+        <NavLi href="/second">Second</NavLi>
+        <NavLi href="/third">Third</NavLi>
+    </NavUl>
+</Navbar>
 <slot></slot>
-<style>
-    nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #dedede;
-        color: #fff;
-        height: auto;
-    }
-</style>

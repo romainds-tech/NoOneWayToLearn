@@ -14,9 +14,15 @@
         }
     })
 </script>
-<h1>Real World Problems</h1>
-{#each items as item}
-    <div>{item.created_at}</div>
-{/each}
+<div class="w-full">
+    <div class="block w-10/12 m-auto">
+        <span class="text-xl font-semibold">No One Way To Learn</span>
+        {#each items as item}
+            <div>{item.created_at}</div>
+        {/each}
+    </div>
+
+</div>
+
 
 
