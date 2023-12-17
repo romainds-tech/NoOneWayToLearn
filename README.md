@@ -2,6 +2,12 @@
 
 Is a tool available to everyone that offers an informal learning path to learn how to develop IT solutions adapted to anyone's background.
 
+Supabase login
+```shell
+npx supabase login
+```
+
+
 Update types
 ```shell
 npx supabase gen types typescript --project-id hxilwjixmoduqxlnclzz > src/lib/database-generated.types.ts

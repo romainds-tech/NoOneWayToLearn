@@ -29,6 +29,8 @@
   },
   "type": "module",
   "dependencies": {
-    "type-fest": "^4.8.2"
+    "type-fest": "^4.8.2",
+    "@supabase/auth-ui-shared": "^0.1.6",
+    "@supabase/auth-ui-svelte": "^0.2.2"
   }
 }
