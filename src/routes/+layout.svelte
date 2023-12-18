@@ -76,7 +76,7 @@
             </ButtonGroup>
 
             {#if state}
-                <Formulaire bind:name={name}></Formulaire>
+                <Formulaire bind:name></Formulaire>
             {:else}
                 <form class="mb-6 relative" on:submit={login}>
                     <span class="text-xl font-semibold block p-5 mt-10">Vous avez déjà un compte ?</span>

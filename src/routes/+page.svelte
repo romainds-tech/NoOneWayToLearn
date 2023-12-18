@@ -25,6 +25,8 @@
     import {supabase} from "../supabaseClient";
     import type {Tables} from "$lib/database.types";
     import {get} from "svelte/store";
+    import {GradientButton} from "flowbite-svelte";
+    import ChartLearning from "$lib/components/ChartLearning.svelte";
 
     let profile: Tables<"profiles">
 
@@ -38,6 +40,30 @@
         }
     })
 
+    let data: []
+
+    let predict = () => {
+        // fetch http://localhost:5050/predict?age=31&cursus=2&side_project=3&open_source=4
+        // with profile values
+        console.log(profile)
+        let url = `http://localhost:5050/predict?age=${profile.age}&cursus=${profile.cursus}&side_project=${profile.side_project}&open_source=${profile.open_source}`
+        fetch(url)
+            .then(response => response.json())
+            .then(res => {
+                console.log("RES: ", res)
+                data = res[1].map((x: number) => x*100)
+                console.log(data)
+            })
+    }
+
+
 </script>
 
-Bonjour  {profile?.name || ""} ! Bienvenue sur ton dashboard.
+<div>
+    Bonjour  {profile?.name || ""} ! Bienvenue sur ton dashboard. <br>
+
+    Découvrir ton type d'apprentissage informel
+    <GradientButton type="button" class="right-5 absolute" color="purpleToBlue" on:click={predict}>Découvrir</GradientButton>
+
+    <ChartLearning bind:serie={data}></ChartLearning>
+</div>
