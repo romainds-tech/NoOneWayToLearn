@@ -39,7 +39,6 @@
 
         if(get(sessionStore)){
             supabase.from('profiles').select(get(sessionStore)?.user).returns<Tables<'profiles'>>().then(({ data }) => {
-                console.log("DATA :", data)
             })
         }
     });
@@ -53,14 +52,21 @@
 
     let state = true
 
+    let logout = async () => {
+        await supabase.auth.signOut()
+    }
+
 </script>
 <Navbar>
     <NavBrand href="/">
         <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">No One Way To Learn</span>
     </NavBrand>
     <NavHamburger/>
-    <NavUl {activeUrl} >
-        <NavLi href="/">Home</NavLi>
+    <NavUl {activeUrl} ulClass="flex items-center">
+        <NavLi class="m-5" href="/">Home</NavLi>
+        {#if $sessionStore}
+            <GradientButton class="m-5" type="button" color="purpleToBlue" on:click={logout}>Déconnexion</GradientButton>
+        {/if}
     </NavUl>
 </Navbar>
 

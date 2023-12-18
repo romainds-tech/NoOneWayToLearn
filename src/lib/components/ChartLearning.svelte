@@ -3,6 +3,7 @@
 
     export let serie: [] = [];
 
+    let label = ""
 
     let options = {
         series: serie,
@@ -29,10 +30,12 @@
                         total: {
                             showAlways: true,
                             show: true,
-                            label: 'Apprentissage informel',
+                            label: "",
                             fontFamily: 'Inter, sans-serif',
                             formatter: function (w) {
                                 const values = Math.max(...w.globals.seriesTotals).toFixed(2);
+                                let index = w.globals.seriesTotals.indexOf(Math.max(...w.globals.seriesTotals));
+                                label = w.globals.labels[index]
                                 return `${values} %`;
                             }
                         },
@@ -41,7 +44,7 @@
                             fontFamily: 'Inter, sans-serif',
                             offsetY: -20,
                             formatter: function (value) {
-                                return value + 'k';
+                                return parseFloat(value).toFixed(2) + '%';
                             }
                         }
                     },
@@ -65,14 +68,14 @@
         yaxis: {
             labels: {
                 formatter: function (value) {
-                    return value + 'k';
+                    return parseFloat(value).toFixed(2) + '%';
                 }
             }
         },
         xaxis: {
             labels: {
                 formatter: function (value) {
-                    return value + 'k';
+                    return parseFloat(value).toFixed(2) + '%';
                 }
             },
             axisTicks: {
@@ -85,12 +88,12 @@
     };
 
     $: options.series = serie;
-
+    $: options.plotOptions.pie.donut.labels.total.label = label;
 
 
 </script>
 
-<Card>
+<Card class="m-auto mt-20">
     <div class="flex justify-between items-start w-full">
         <div class="flex-col items-center">
             <div class="flex items-center mb-1">
