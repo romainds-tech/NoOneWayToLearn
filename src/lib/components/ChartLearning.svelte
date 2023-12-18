@@ -93,11 +93,11 @@
 
 </script>
 
-<Card class="m-auto mt-20">
+<Card class="mt-10 rounded-3xl m-5 h-fit">
     <div class="flex justify-between items-start w-full">
         <div class="flex-col items-center">
             <div class="flex items-center mb-1">
-                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white me-1">Apprentissage informel</h5>
+                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white me-1">Apprentissage informel optimal</h5>
             </div>
         </div>
     </div>

@@ -25,8 +25,10 @@
     import {supabase} from "../supabaseClient";
     import type {Tables} from "$lib/database.types";
     import {get} from "svelte/store";
-    import {GradientButton} from "flowbite-svelte";
+    import {Card, GradientButton} from "flowbite-svelte";
     import ChartLearning from "$lib/components/ChartLearning.svelte";
+    import Learn from "$lib/Learn.svelte";
+    import Undraw from "$lib/Undraw.svelte";
 
     let profile: Tables<"profiles">
 
@@ -42,12 +44,8 @@
     let data: []
 
     let predict = () => {
-        // fetch http://localhost:5050/predict?age=31&cursus=2&side_project=3&open_source=4
-        // with profile values
-
-        console.log("Profile : ", profile)
-
         let url = `http://localhost:5050/predict?age=${profile.age}&cursus=${profile.cursus}&side_project=${profile.side_project}&open_source=${profile.open_source}`
+
         fetch(url)
             .then(response => response.json())
             .then(res => {
@@ -59,12 +57,34 @@
 </script>
 
 <div>
-    Bonjour  {profile?.name || ""} ! Bienvenue sur ton dashboard. <br>
+    <div class="z-10 relative">
+        <p class="text-xl">
+            Bonjour {profile?.name || ""} ! Bienvenue sur ton dashboard. <br>
+            Découvre ton type d'apprentissage informel
+        </p>
 
-    Découvrir ton type d'apprentissage informel
-    <GradientButton type="button" class="right-4 absolute" color="purpleToBlue" on:click={predict}>Découvrir</GradientButton>
+        <GradientButton type="button" class="mt-5" color="purpleToBlue" on:click={predict}>Prédire</GradientButton>
 
-    {#if data}
-        <ChartLearning bind:serie={data}></ChartLearning>
-    {/if}
+        <div class="flex">
+            {#if data}
+                <ChartLearning bind:serie={data}></ChartLearning>
+            {/if}
+
+            <Card class="mt-10 rounded-3xl m-5 h-fit" href="/exercice">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">S'exercer !</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">
+                    Réaliser les projets mis à disposition est la clé de la réussite !
+                    L'exercice régulier vous permettra de développer vos compétences et de maîtriser de nouvelles techniques.
+                    Que vous soyez un débutant cherchant à apprendre ou un expert cherchant à se perfectionner,
+                    l'exercice est essentiel pour progresser dans votre domaine. Prenez du temps chaque jour pour pratiquer
+                    et vous verrez des résultats remarquables !
+                </p>
+            </Card>
+
+        </div>
+    </div>
+
+
+    <Learn></Learn>
+    <Undraw></Undraw>
 </div>

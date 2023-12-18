@@ -58,7 +58,7 @@
 </script>
 
 
-<form class="mb-6 relative" on:submit={submit}>
+<form class="relative" on:submit={submit}>
 
     <div class="flex">
         <Label class="p-5 w-8/12">
@@ -99,7 +99,11 @@
         <Select class="mt-2" items={forms_value} bind:value={form.open_source} placeholder="Choissiser la fréquence de vos contributions à des projets open-source" required />
     </Label>
 
-    <GradientButton type="submit" class="right-5 absolute" color="purpleToBlue">Analyser</GradientButton>
+    <div class="w-full flex flex-row-reverse">
+        <GradientButton type="submit" class="m-5" color="purpleToBlue">Analyser</GradientButton>
+    </div>
+
+
 
     <Modal title="Information" bind:open={clickOutsideModal} autoclose outsideclose>
         <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">Merci d'avoir pris le temps de remplir le formulaire !</p>
