@@ -106,7 +106,7 @@
     </div>
 
 {:else}
-    <div class="w-full bg-slate-100 h-full">
+    <div class="w-full bg-slate-100 h-fit">
         <div class="w-8/12 m-auto pt-20">
             <slot></slot>
         </div>
