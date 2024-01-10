@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Label, Input, NumberInput, Select, GradientButton, Button, Modal} from "flowbite-svelte";
+    import {Label, Input, NumberInput, Select, GradientButton, Button, Modal, Textarea} from "flowbite-svelte";
     import {supabase} from "../../../supabaseClient";
     import type {Tables} from "$lib/database.types";
     import {sessionStore} from "$lib/store/sessionStore";
@@ -9,13 +9,14 @@
     export let name = "Romain"
 
     let form = {
-        age: 23,
+        age: 20,
         name: name,
-        email: "38rom1+test@gmail.com",
+        email: "",
         password: "",
-        cursus: "tech",
-        side_project: "sometimes",
-        open_source: "sometimes"
+        cursus: "",
+        side_project: "",
+        open_source: "",
+        temoignage: ""
     }
 
     let cursus = [
@@ -42,6 +43,8 @@
             }
             await supabase.from('profiles').insert(new_form);
         }).then(async () => {
+
+
             clickOutsideModal = true;
         }).catch(() => {
             email_unvalidated = true;
@@ -97,6 +100,16 @@
     <Label class="p-5">
         Contribuez-vous à des projets open-source ?
         <Select class="mt-2" items={forms_value} bind:value={form.open_source} placeholder="Choissiser la fréquence de vos contributions à des projets open-source" required />
+    </Label>
+
+    <Label class="p-5">
+        Parmis tous les projets informatiques auxquels vous
+        avez participé (perso, profesionnel, POC, side project). <br>
+        Lesquels vous ont apporté le plus de plaisir à réaliser
+        et pourquoi ?<br>
+        Ces informations nous permettrons de vous proposer
+        des exercices adapté à votre profil <br>
+        <Textarea class="mt-2"  placeholder="Votre message" rows="4" bind:value={form.temoignage} name="message" />
     </Label>
 
     <div class="w-full flex flex-row-reverse">
